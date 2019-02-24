@@ -11,7 +11,7 @@ var boxY = canvas.height - 3*canvas.height/32;
 var boxW = 3*canvas.width/32;
 var boxH = 3*canvas.height/32;
 var count = 0;
-var play = false;
+var play = true;
 
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
