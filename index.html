@@ -5,17 +5,15 @@
     <title>Enarc Simulator</title>
     <style>
     	* { padding: 0; margin: 0; }
-        canvas { background: #eee; display: block; margin: 0 auto; }
-        body {
-    background-color: rgb(64, 64, 68);
-}
-
+        body { background-color: rgb(64, 64, 68); display:block; justify-content: center; align-items: center;}
+        canvas { background: #eee; display: flex; position:absolute; margin: 0;
+                top:50%; -ms-transform: translateY(-50%); transform: translateY(-50%);
+                left:25%; }
     </style>
 </head>
 <body>
-<div>Press 'p' to toggle autoplay</div>
-<canvas id="myCanvas" width="960" height="640"></canvas>
-
+    Press 'p' to toggle autoplay
+    <canvas id="myCanvas" width="960" height="640"></canvas>
 <script src="index.js">
 </script>
 
