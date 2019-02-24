@@ -11,6 +11,7 @@ var boxY = canvas.height - 3*canvas.height/32;
 var boxW = 3*canvas.width/32;
 var boxH = 3*canvas.height/32;
 var count = 0;
+var play = false;
 
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
@@ -27,6 +28,13 @@ function keyDownHandler(e) {
     }
     else if(e.key == "Up" || e.key == "ArrowUp") {
         upPressed = true;
+    }
+    else if(e.key == "p"){
+        rightPressed = false;
+        leftPressed = false;
+        upPressed = false;
+        downPressed = false;
+        play = !play;
     }
 }
 
@@ -113,10 +121,36 @@ function drawBox(){
         boxX = x - boxW/2 + canvas.width/128;
         boxY = y;
     }
-    if(boxX < 3*canvas.width/16 + boxW/2 && boxY == 5*canvas.height/8 - boxH-2){
+    if(boxX < canvas.width/32 + boxW/2 && boxY == 5*canvas.height/8 - boxH-2){
         boxX = canvas.width/2;
         boxY = canvas.height - 3*canvas.height/32;
         count += 1;
+    }
+}
+
+function autoPlay(){
+    rightPressed = false;
+    leftPressed = false;
+    upPressed = false;
+    downPressed = false;
+    if(boxX != x - boxW/2 + canvas.width/128 && boxY != y){
+        if(x <= boxX){
+            rightPressed = true;
+        }
+        else if(x >= boxX + boxW){
+            leftPressed = true;
+        }
+        else if(y < boxY){
+            downPressed = true;
+        }
+    }
+    else{
+        if(y > 5*canvas.height/8 - boxH - 2){
+            upPressed = true;
+        }
+        else if(x > 3*canvas.width/32){
+            leftPressed = true;
+        }
     }
 }
 
@@ -128,6 +162,9 @@ function draw() {
     drawBox();
     ctx.font = '48px serif';
     ctx.fillText('Boxes Delivered: ' + count.toString(), canvas.width/64, 3*canvas.height/16);
+    if(play){
+        autoPlay();
+    }
 }
 
 var interval = setInterval(draw, 10);
