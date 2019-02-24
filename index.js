@@ -134,10 +134,10 @@ function autoPlay(){
     upPressed = false;
     downPressed = false;
     if(boxX != x - boxW/2 + canvas.width/128 && boxY != y){
-        if(x <= boxX){
+        if(x <= boxX + boxW/3){
             rightPressed = true;
         }
-        else if(x >= boxX + boxW){
+        else if(x >= boxX + 2*boxW/3){
             leftPressed = true;
         }
         else if(y < boxY){
